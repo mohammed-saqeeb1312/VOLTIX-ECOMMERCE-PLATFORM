@@ -3,7 +3,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 const here=path.dirname(fileURLToPath(import.meta.url))
-const dataDir=path.resolve(here,'../data')
+const dataDir = process.env.DB_DIR
+  ? path.resolve(process.env.DB_DIR)
+  : path.resolve(here, '../data')
 const dbFile=path.join(dataDir,'voltix.sqlite')
 fs.mkdirSync(dataDir,{recursive:true})
 
